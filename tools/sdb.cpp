@@ -13,6 +13,14 @@ int main(int argc, const char** argv) {
 	}
 
 	pid_t pid = attach(argc, argv);
+	// TODO: should check for -1 return value from attach() here?
+
+	int wait_status;
+	int options = 0;
+	if (waitpid(pid, &wait_status, options) < 0) {
+		std::perror("waitpid failed");
+		// TODO: should return -1 here?
+	}
 }
 
 #include <string_view>
