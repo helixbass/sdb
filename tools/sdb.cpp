@@ -1,6 +1,8 @@
 #include <libsdb/libsdb.hpp>
 #include <iostream>
 #include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
 namespace {
 	pid_t attach(int argc, const char** argv);
