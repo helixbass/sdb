@@ -44,7 +44,7 @@ namespace sdb {
 		pid_t pid_ = 0;
 		bool terminate_on_end_ = true;
 		process_state state_ = process_state::stopped;
-	}
+	};
 }
 
 #endif

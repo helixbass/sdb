@@ -13,10 +13,10 @@ namespace sdb {
 		static void send_errno(const std::string& prefix) {
 			throw error(prefix + ": " + std::strerror(errno));
 		}
-	}
 
 	private:
 		error(const std::string& what) : std::runtime_error(what) {}
+	};
 }
 
 #endif

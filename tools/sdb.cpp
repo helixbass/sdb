@@ -1,18 +1,19 @@
-#include <libsdb/libsdb.hpp>
 #include <iostream>
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <memory>
+#include <libsdb/process.hpp>
 
 namespace {
-	pid_t attach(int argc, const char** argv);
+	std::unique_ptr<sdb::process> attach(int argc, const char** argv);
 }
 
 #include <editline/readline.h>
 #include <string>
 
 namespace {
-	void handle_command(pid_t pid, std::string_view line);
+	void handle_command(std::unique_ptr<sdb::process>& process, std::string_view line);
 }
 
 #include <libsdb/error.hpp>
@@ -20,7 +21,7 @@ namespace {
 namespace {
 	void main_loop(std::unique_ptr<sdb::process>& process) {
 		char* line = nullptr;
-		while ((line = readline("sdb> ")) != nullptr {
+		while ((line = readline("sdb> ")) != nullptr) {
 			std::string line_str;
 
 			if (line == std::string_view("")) {
@@ -61,7 +62,7 @@ int main(int argc, const char** argv) {
 
 #include <string_view>
 #include <sys/ptrace.h>
-#include <libsdb/process.h>
+#include <libsdb/process.hpp>
 
 namespace {
 	std::unique_ptr<sdb::process> attach(int argc, const char** argv) {
