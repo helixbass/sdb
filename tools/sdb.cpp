@@ -56,6 +56,8 @@ int main(int argc, const char** argv) {
 #include <sys/ptrace.h>
 
 namespace {
+	// TODO: a lot of this will get deleted because of
+	// refactoring into the library code
 	pid_t attach(int argc, const char** argv) {
 		pid_t pid = 0;
 		if (argc == 3 && argv[1] == std::string_view("-p")) {
