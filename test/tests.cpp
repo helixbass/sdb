@@ -43,7 +43,8 @@ TEST_CASE("process::launch() no such program", "[process]") {
 
 
 TEST_CASE("process::attach() success", "[process]") {
-	auto pid = /* launch program without attaching */;
-	auto proc = process::attach(pid);
-	REQUIRE(get_process_status(pid) == 't');
+	// auto target = process::launch("targets/run_endlessly", false);
+	auto target = process::launch("build/test/targets/run_endlessly", false);
+	auto proc = process::attach(target->pid());
+	REQUIRE(get_process_status(target->pid()) == 't');
 }
